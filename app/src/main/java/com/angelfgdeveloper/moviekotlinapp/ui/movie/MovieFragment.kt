@@ -1,10 +1,9 @@
-package com.angelfgdeveloper.moviekotlinapp
+package com.angelfgdeveloper.moviekotlinapp.ui.movie
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
+import com.angelfgdeveloper.moviekotlinapp.R
 import com.angelfgdeveloper.moviekotlinapp.databinding.FragmentMovieBinding
 
 class MovieFragment : Fragment(R.layout.fragment_movie) {

@@ -1,7 +1,8 @@
-package com.angelfgdeveloper.moviekotlinapp
+package com.angelfgdeveloper.moviekotlinapp.ui
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.angelfgdeveloper.moviekotlinapp.R
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
