@@ -3,16 +3,35 @@ package com.angelfgdeveloper.moviekotlinapp.ui.moviedetails
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.View
+import androidx.navigation.fragment.navArgs
 import com.angelfgdeveloper.moviekotlinapp.R
 import com.angelfgdeveloper.moviekotlinapp.databinding.FragmentMovieDetailBinding
+import com.bumptech.glide.Glide
 
 class MovieDetailFragment : Fragment(R.layout.fragment_movie_detail) {
 
     private lateinit var binding: FragmentMovieDetailBinding
+    private val args by navArgs<MovieDetailFragmentArgs>()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding = FragmentMovieDetailBinding.bind(view)
+
+        Glide.with(requireContext())
+            .load("https://image.tmdb.org/t/p/w500/${args.posterImageUrl}")
+            .centerCrop()
+            .into(binding.imageViewMovie)
+
+        Glide.with(requireContext())
+            .load("https://image.tmdb.org/t/p/w500/${args.backgroundImageUrl}")
+            .centerCrop()
+            .into(binding.imageViewBackground)
+
+        binding.textViewDescription.text = args.overview
+        binding.textViewTitle.text = args.title
+        binding.textViewLanguage.text = "Idioma ${args.language}"
+        binding.textViewRating.text = "${args.voteAverage} (${args.voteCount} votos)"
+        binding.textViewReleased.text = "Estreno ${args.releaseDate}"
     }
 
 }

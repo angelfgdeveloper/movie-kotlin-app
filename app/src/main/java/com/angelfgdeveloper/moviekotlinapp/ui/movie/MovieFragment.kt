@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment
 import android.view.View
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.ConcatAdapter
 import com.angelfgdeveloper.moviekotlinapp.R
 import com.angelfgdeveloper.moviekotlinapp.core.Resource
@@ -55,9 +56,33 @@ class MovieFragment : Fragment(R.layout.fragment_movie), MovieAdapter.OnMovieCli
 //                    Log.d("LiveData", "" + "Upcoming: ${result.data.first} \n \n " + "TopRated: ${result.data.second} \n \n " + "Popular: ${result.data.third}")
                     binding.relativeLayoutProgressBar.visibility = View.GONE
                     concatAdapter.apply {
-                        addAdapter(0, UpcomingConcatAdapter(MovieAdapter(result.data.first.results, this@MovieFragment)))
-                        addAdapter(1, TopRatedConcatAdapter(MovieAdapter(result.data.second.results, this@MovieFragment)))
-                        addAdapter(2, PopularConcatAdapter(MovieAdapter(result.data.third.results, this@MovieFragment)))
+                        addAdapter(
+                            0,
+                            UpcomingConcatAdapter(
+                                MovieAdapter(
+                                    result.data.first.results,
+                                    this@MovieFragment
+                                )
+                            )
+                        )
+                        addAdapter(
+                            1,
+                            TopRatedConcatAdapter(
+                                MovieAdapter(
+                                    result.data.second.results,
+                                    this@MovieFragment
+                                )
+                            )
+                        )
+                        addAdapter(
+                            2,
+                            PopularConcatAdapter(
+                                MovieAdapter(
+                                    result.data.third.results,
+                                    this@MovieFragment
+                                )
+                            )
+                        )
                     }
 
                     binding.recyclerViewMovies.adapter = concatAdapter
@@ -118,7 +143,18 @@ class MovieFragment : Fragment(R.layout.fragment_movie), MovieAdapter.OnMovieCli
     }
 
     override fun onMovieClick(movie: Movie) {
-        Log.d("Movie", "onMovieClick: $movie")
+        // Log.d("Movie", "onMovieClick: $movie")
+        val action = MovieFragmentDirections.actionMovieFragmentToMovieDetailFragment(
+            movie.poster_path,
+            movie.backdrop_path,
+            movie.vote_average.toFloat(),
+            movie.vote_count,
+            movie.overview,
+            movie.title,
+            movie.original_language,
+            movie.release_date
+        )
+        findNavController().navigate(action)
     }
 
 }

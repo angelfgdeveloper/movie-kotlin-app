@@ -54,6 +54,7 @@
         app:layout_constraintGuide_begin="333dp" />
 
     <TextView
+        android:id="@+id/textViewTitle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:fontFamily="sans-serif-black"
@@ -128,7 +129,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Bookmark" />
+            android:text="Marcador" />
 
     </LinearLayout>
 
@@ -153,7 +154,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Favorite" />
+            android:text="Favorito" />
 
     </LinearLayout>
 
@@ -176,7 +177,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Share" />
+            android:text="Compartir" />
 
     </LinearLayout>
 
@@ -185,7 +186,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="16dp"
-        android:text="overview"
+        android:text="Información general"
         android:textSize="20sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
