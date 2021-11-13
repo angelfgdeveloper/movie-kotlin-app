@@ -3,6 +3,7 @@ package com.angelfgdeveloper.moviekotlinapp.presentation
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.liveData
+import androidx.lifecycle.viewModelScope
 import com.angelfgdeveloper.moviekotlinapp.core.Resource
 import com.angelfgdeveloper.moviekotlinapp.repository.MovieRepository
 import kotlinx.coroutines.Dispatchers
@@ -44,7 +45,7 @@ class MovieViewModel(private val repo: MovieRepository) : ViewModel() {
         }
     }
 
-    fun fetchMainScreenMovies() = liveData(Dispatchers.IO) {
+    fun fetchMainScreen2Movies() = liveData(Dispatchers.IO) {
         emit(Resource.Loading())
 
         try {
@@ -61,6 +62,25 @@ class MovieViewModel(private val repo: MovieRepository) : ViewModel() {
 //                        repo.getPopularMovies(),
 //                        repo.getPopularMovies(),
 //                    )
+                )
+            )
+        } catch (e: Exception) {
+            emit(Resource.Failure(e))
+        }
+
+    }
+
+    fun fetchMainScreenMovies() = liveData(viewModelScope.coroutineContext + Dispatchers.Main) {
+        emit(Resource.Loading())
+
+        try {
+            emit(
+                Resource.Success(
+                    Triple(
+                        repo.getUpcomingMovies(),
+                        repo.getTopRatedMovies(),
+                        repo.getPopularMovies()
+                    )
                 )
             )
         } catch (e: Exception) {
