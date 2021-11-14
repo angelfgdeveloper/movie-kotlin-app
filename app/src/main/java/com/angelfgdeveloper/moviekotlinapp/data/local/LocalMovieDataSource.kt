@@ -9,39 +9,25 @@ import kotlinx.coroutines.withContext
 class LocalMovieDataSource(private val movieDao: MovieDao) {
 
     suspend fun getUpcomingMovies(): MovieList {
-        val movieList: MovieList
-        withContext(Dispatchers.IO) {
-            movieList = movieDao.getAllMovies().filter { movie ->
-                movie.movie_type == "upcoming"
-            }.toMovieList()
-        }
-        return movieList
+        return movieDao.getAllMovies().filter { movie ->
+            movie.movie_type == "upcoming"
+        }.toMovieList()
     }
 
     suspend fun getTopRatedMovies(): MovieList {
-        val movieList: MovieList
-        withContext(Dispatchers.IO) {
-            movieList = movieDao.getAllMovies().filter { movie ->
-                movie.movie_type == "toprated"
-            }.toMovieList()
-        }
-        return movieList
+        return movieDao.getAllMovies().filter { movie ->
+            movie.movie_type == "toprated"
+        }.toMovieList()
     }
 
     suspend fun getPopularMovies(): MovieList {
-        val movieList: MovieList
-        withContext(Dispatchers.IO) {
-            movieList = movieDao.getAllMovies().filter { movie ->
-                movie.movie_type == "popular"
-            }.toMovieList()
-        }
-        return movieList
+        return movieDao.getAllMovies().filter { movie ->
+            movie.movie_type == "popular"
+        }.toMovieList()
     }
 
     suspend fun saveMovie(movie: MovieEntity) {
-        withContext(Dispatchers.IO) {
-            movieDao.saveMovie(movie)
-        }
+        movieDao.saveMovie(movie)
     }
 
 }
