@@ -45,7 +45,7 @@ class MovieViewModel(private val repo: MovieRepository) : ViewModel() {
         }
     }
 
-    fun fetchMainScreen2Movies() = liveData(Dispatchers.IO) {
+    fun fetchMainScreenMovies() = liveData(Dispatchers.IO) {
         emit(Resource.Loading())
 
         try {
@@ -70,7 +70,7 @@ class MovieViewModel(private val repo: MovieRepository) : ViewModel() {
 
     }
 
-    fun fetchMainScreenMovies() = liveData(viewModelScope.coroutineContext + Dispatchers.Main) {
+    fun fetchMainScreen2Movies() = liveData(viewModelScope.coroutineContext + Dispatchers.Main) {
         emit(Resource.Loading())
 
         try {
