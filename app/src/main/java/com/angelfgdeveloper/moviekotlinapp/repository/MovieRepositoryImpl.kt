@@ -1,17 +1,17 @@
 package com.angelfgdeveloper.moviekotlinapp.repository
 
 import com.angelfgdeveloper.moviekotlinapp.data.model.MovieList
-import com.angelfgdeveloper.moviekotlinapp.data.remote.MovieDataSource
+import com.angelfgdeveloper.moviekotlinapp.data.remote.RemoteMovieDataSource
 
-class MovieRepositoryImpl(private val dataSource: MovieDataSource): MovieRepository {
+class MovieRepositoryImpl(private val dataSourceRemote: RemoteMovieDataSource): MovieRepository {
 
     // Dos maneras de retornar
     override suspend fun getUpcomingMovies(): MovieList {
-        return dataSource.getUpcomingMovies()
+        return dataSourceRemote.getUpcomingMovies()
     }
 
-    override suspend fun getTopRatedMovies(): MovieList = dataSource.getTopRatedMovies()
+    override suspend fun getTopRatedMovies(): MovieList = dataSourceRemote.getTopRatedMovies()
 
-    override suspend fun getPopularMovies(): MovieList = dataSource.getPopularMovies()
+    override suspend fun getPopularMovies(): MovieList = dataSourceRemote.getPopularMovies()
 
 }

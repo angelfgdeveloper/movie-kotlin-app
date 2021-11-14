@@ -6,7 +6,7 @@ import com.angelfgdeveloper.moviekotlinapp.repository.WebService
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 
-class MovieDataSource(private val webService: WebService) {
+class RemoteMovieDataSource(private val webService: WebService) {
 
     // Dos maneras de retornar
     suspend fun getUpcomingMovies(): MovieList {

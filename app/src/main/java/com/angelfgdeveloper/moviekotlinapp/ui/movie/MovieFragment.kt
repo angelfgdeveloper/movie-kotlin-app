@@ -11,10 +11,8 @@ import androidx.recyclerview.widget.ConcatAdapter
 import com.angelfgdeveloper.moviekotlinapp.R
 import com.angelfgdeveloper.moviekotlinapp.core.Resource
 import com.angelfgdeveloper.moviekotlinapp.data.model.Movie
-import com.angelfgdeveloper.moviekotlinapp.data.remote.MovieDataSource
+import com.angelfgdeveloper.moviekotlinapp.data.remote.RemoteMovieDataSource
 import com.angelfgdeveloper.moviekotlinapp.databinding.FragmentMovieBinding
-import com.angelfgdeveloper.moviekotlinapp.databinding.PopularMoviesRowBinding
-import com.angelfgdeveloper.moviekotlinapp.databinding.TopRatedMoviesRowBinding
 import com.angelfgdeveloper.moviekotlinapp.presentation.MovieViewModel
 import com.angelfgdeveloper.moviekotlinapp.presentation.MovieViewModelFactory
 import com.angelfgdeveloper.moviekotlinapp.repository.MovieRepositoryImpl
@@ -32,7 +30,7 @@ class MovieFragment : Fragment(R.layout.fragment_movie), MovieAdapter.OnMovieCli
     private val viewModel by viewModels<MovieViewModel> {
         MovieViewModelFactory(
             MovieRepositoryImpl(
-                MovieDataSource(RetrofitClient.webservice)
+                RemoteMovieDataSource(RetrofitClient.webservice)
             )
         )
     }
